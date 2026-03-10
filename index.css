@@ -361,8 +361,6 @@ h6 {
     height: 100%;
     object-fit: cover;
     object-position: center center;
-    transform: scale(1.15);
-    /* Zoom para mejorar el encuadre */
 }
 
 /* matriz.png: ocupar todo el ancho sin cortes arriba */
