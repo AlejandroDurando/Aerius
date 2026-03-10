@@ -583,10 +583,10 @@ h6 {
     }
 
     .carousel-track {
-        left: 1rem;
-        right: 1rem;
-        bottom: 5rem;
-        min-height: 12rem;
+        left: 2rem;
+        right: 2rem;
+        bottom: 5.5rem;
+        min-height: 14rem;
         display: flex;
         align-items: flex-end;
     }
@@ -594,8 +594,13 @@ h6 {
     .carousel-slide p {
         text-align: center;
         margin: 0 auto;
-        max-width: 100%;
+        max-width: 90%;
+        /* Reduce el ancho para forzar más saltos de línea */
         width: 100%;
+        line-height: 1.8;
+        /* Un poco más de aire entre líneas */
+        font-size: 0.95rem;
+        /* Un pelo más grande para legibilidad */
     }
 
     .carousel-dots {
