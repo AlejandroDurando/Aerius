@@ -1,0 +1,439 @@
+:root {
+    /* Color Palette */
+    --color-bg: #FFFFFF;
+    --color-text-main: #000000;
+    --color-text-muted: #666666;
+    --color-accent-red: #E30613;
+    /* A more vibrant automotive red */
+    --color-accent-red-hover: #C20510;
+    --color-gray-light: #F2F2F2;
+    --color-gray-dark: #111111;
+
+    /* Typography */
+    --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-title: 'Orbitron', sans-serif;
+
+    /* Spacing */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 2rem;
+    --space-lg: 4rem;
+    --space-xl: 6rem;
+
+    /* Transitions */
+    --transition-standard: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--color-text-main);
+    background-color: var(--color-bg);
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-title);
+}
+
+/* Navbar */
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 2rem 0;
+    background: transparent;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 4rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4rem;
+}
+
+.logo-img {
+    height: 36px;
+    width: auto;
+    display: block;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--color-text-main);
+    font-weight: 400;
+    font-size: 0.8rem;
+    transition: var(--transition-standard);
+}
+
+.nav-links a:hover {
+    color: var(--color-accent-red);
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    background: url('assets/images/car.png') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    /* centrado vertical */
+    overflow: hidden;
+}
+
+.hero-text {
+    position: relative;
+    z-index: 2;
+    padding-left: 5rem;
+    max-width: 600px;
+}
+
+.hero-text h1 {
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: #111;
+    margin-bottom: 1.4rem;
+    white-space: nowrap;
+    /* cada línea del <br> queda fija */
+}
+
+.hero-text p {
+    font-size: 0.82rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 1.8rem;
+    max-width: 100%;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+
+.btn-pill {
+    display: inline-block;
+    padding: 0.65rem 1.8rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 400;
+    transition: var(--transition-standard);
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    /* evita que el texto se parta */
+}
+
+.btn-red {
+    background: var(--color-accent-red);
+    color: white;
+}
+
+.btn-black {
+    background: black;
+    color: white;
+}
+
+.btn-pill:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+/* Split Section */
+.split-section {
+    display: grid;
+    grid-template-columns: 33.333% 66.666%;
+    /* alineación exacta con la grilla de 3 columnas */
+    height: 800px;
+}
+
+/* Panel izquierdo */
+.split-left {
+    position: relative;
+    background: url('assets/images/fondo.png') no-repeat center center;
+    background-size: cover;
+    overflow: hidden;
+}
+
+/* Carrusel */
+.carousel {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Track: zona donde viven los textos, anclada al fondo */
+.carousel-track {
+    position: absolute;
+    bottom: 5.5rem;
+    /* deja espacio para los dots */
+    left: 4rem;
+    right: 4rem;
+    /* altura máxima = texto más largo aprox. */
+    min-height: 7rem;
+}
+
+.carousel-slide {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    pointer-events: none;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.carousel-slide p {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: #1a1a1a;
+    max-width: 310px;
+}
+
+/* Dots siempre fijos en la esquina inferior izquierda */
+.carousel-dots {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 4rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.25);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.3s ease;
+}
+
+.dot.active {
+    background: rgba(0, 0, 0, 0.75);
+}
+
+/* Panel derecho */
+.split-right {
+    position: relative;
+    overflow: hidden;
+}
+
+.split-team-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* llena todo el ancho sin bordes blancos */
+    object-position: center bottom;
+    /* mantiene la zona difuminada inferior */
+    display: block;
+}
+
+/* Texto sobre la imagen (aprovechando el difuminado propio de la foto) */
+.split-right-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2.5rem 4rem;
+    /* ajuste de posición sobre el difuminado */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+    z-index: 2;
+}
+
+.split-right-overlay p {
+    color: #111;
+    /* texto oscuro sobre el fondo claro/difuminado de la foto */
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    font-family: var(--font-title);
+}
+
+.split-right-overlay .btn-pill {
+    padding: 0.7rem 2.5rem;
+    font-size: 0.78rem;
+}
+
+
+/* Bottom Grid Section */
+.bottom-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    min-height: 600px;
+}
+
+.grid-item {
+    position: relative;
+    overflow: hidden;
+    background: white;
+    cursor: pointer;
+}
+
+.grid-image {
+    height: 70%;
+}
+
+.grid-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+/* matriz.png: subir la imagen (mostrar la parte de abajo) */
+.grid-item:nth-child(1) .grid-image img {
+    object-position: center bottom;
+}
+
+/* car2.png: mostrar cubriendo igual que las demás */
+.grid-item:nth-child(3) .grid-image img {
+    object-fit: cover;
+    object-position: center center;
+    background-color: transparent;
+}
+
+.grid-content {
+    padding: 2rem;
+}
+
+.grid-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.grid-content p {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+}
+
+/* The Hover Black Box Requirement */
+.grid-item.hover-box {
+    background: white;
+    transition: var(--transition-standard);
+}
+
+.black-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    color: white;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Ensures button at top and text at bottom */
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-standard);
+    z-index: 10;
+}
+
+.grid-item.hover-box:hover .black-overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+.black-overlay .btn-pill {
+    align-self: flex-start;
+    margin-bottom: 0;
+    padding: 0.6rem 2.5rem;
+}
+
+.black-overlay p {
+    font-size: 1.5rem;
+    line-height: 1.4;
+    font-weight: 400;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+
+    .nav-container,
+    .hero-content,
+    .desc-section {
+        padding: 0 2rem;
+    }
+
+    .bottom-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-image {
+        position: relative;
+        width: 100%;
+        right: 0;
+        transform: none;
+        top: 0;
+    }
+
+    .desc-section {
+        grid-template-columns: 1fr;
+    }
+
+    .bottom-grid {
+        grid-template-columns: 1fr;
+    }
+}
