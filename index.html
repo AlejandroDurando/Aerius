@@ -28,6 +28,11 @@
                 <img src="assets/images/aerius.png" alt="Aerius" class="logo-img">
             </div>
             <nav>
+                <button class="menu-toggle" aria-label="Abrir menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
                 <ul class="nav-links">
                     <li><a href="#">Inicio</a></li>
                     <li><a href="#">Enfoque</a></li>
@@ -182,6 +187,15 @@
         });
 
         startAuto();
+
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
     </script>
 
 </body>

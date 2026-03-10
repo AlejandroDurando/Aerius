@@ -98,6 +98,38 @@ h6 {
     color: var(--color-accent-red);
 }
 
+/* Hamburguesa */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background: #111;
+    transition: 0.3s;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
 /* Hero Section */
 .hero {
     height: 100vh;
@@ -329,9 +361,11 @@ h6 {
     object-position: center center;
 }
 
-/* matriz.png: subir la imagen (mostrar la parte de abajo) */
+/* matriz.png: mostrar completa */
 .grid-item:nth-child(1) .grid-image img {
-    object-position: center bottom;
+    object-fit: contain;
+    background-color: #f7f7f7;
+    /* fondo ligero para que no flote en blanco puro si sobra espacio */
 }
 
 /* car2.png: mostrar cubriendo igual que las demás */
@@ -349,6 +383,8 @@ h6 {
     font-size: 1.4rem;
     margin-bottom: 1rem;
     font-weight: 500;
+    font-family: var(--font-main);
+    /* Cambiado a la fuente del cuerpo */
 }
 
 .grid-content p {
@@ -420,15 +456,41 @@ h6 {
     .split-right {
         height: 500px;
     }
+
+    .split-right-overlay {
+        align-items: center;
+        text-align: center;
+    }
 }
 
 @media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
     .nav-links {
-        display: none;
+        display: flex;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: white;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: 0.4s;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        border: none;
+    }
+
+    .nav-links.active {
+        right: 0;
     }
 
     .nav-container {
-        justify-content: center;
+        justify-content: space-between;
+        padding: 0 1.5rem;
     }
 
     .hero-content {
@@ -439,14 +501,21 @@ h6 {
     }
 
     .hero-text {
-        padding-left: 0;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
         max-width: 100%;
+        text-align: center;
     }
 
     .hero-text h1 {
         font-size: 1.6rem;
         white-space: normal;
         /* permite que el texto fluya en pantallas chicas */
+    }
+
+    .hero-text p br {
+        display: none;
+        /* quitar saltos de línea manuales en mobile */
     }
 
     .hero-image {
@@ -456,10 +525,6 @@ h6 {
         right: 0;
         transform: none;
         top: 0;
-    }
-
-    .desc-section {
-        grid-template-columns: 1fr;
     }
 
     .split-section {
@@ -473,10 +538,19 @@ h6 {
     }
 
     .carousel-track {
-        left: 1.5rem;
-        right: 1.5rem;
-        bottom: 4.5rem;
-        min-height: 10rem;
+        left: 1rem;
+        right: 1rem;
+        bottom: 5rem;
+        min-height: 12rem;
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .carousel-slide p {
+        text-align: center;
+        margin: 0 auto;
+        max-width: 100%;
+        width: 100%;
     }
 
     .carousel-dots {
@@ -491,6 +565,7 @@ h6 {
         /* un poco más chico en mobile */
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         /* ayuda a leer si el fondo es claro */
+        text-align: left;
     }
 
     .bottom-grid {
@@ -501,14 +576,18 @@ h6 {
     .grid-item {
         height: auto;
         /* deja que el contenido defina el alto */
-        padding-bottom: 2rem;
+        padding-bottom: 0;
+        display: flex;
+        flex-direction: column;
     }
 
     .grid-image {
-        height: 300px;
+        height: 250px;
+        flex-shrink: 0;
     }
 
     .grid-content {
-        padding: 1.5rem;
+        padding: 2rem 1.5rem;
+        flex-grow: 1;
     }
 }
