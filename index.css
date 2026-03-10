@@ -123,7 +123,8 @@ h6 {
     font-weight: 400;
     line-height: 1.2;
     letter-spacing: -0.02em;
-    color: #111;
+    color: #444;
+    /* Gris oscuro */
     margin-bottom: 1.4rem;
     white-space: nowrap;
     /* cada línea del <br> queda fija */
@@ -288,8 +289,8 @@ h6 {
 }
 
 .split-right-overlay p {
-    color: #111;
-    /* texto oscuro sobre el fondo claro/difuminado de la foto */
+    color: #fff;
+    /* Blanco */
     font-size: 1.5rem;
     font-weight: 400;
     line-height: 1.2;
@@ -409,6 +410,16 @@ h6 {
     .bottom-grid {
         grid-template-columns: 1fr 1fr;
     }
+
+    .split-section {
+        height: auto;
+        grid-template-columns: 1fr;
+    }
+
+    .split-left,
+    .split-right {
+        height: 500px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -416,14 +427,32 @@ h6 {
         display: none;
     }
 
+    .nav-container {
+        justify-content: center;
+    }
+
     .hero-content {
         flex-direction: column;
+        padding-top: 100px;
         text-align: center;
+        gap: 2rem;
+    }
+
+    .hero-text {
+        padding-left: 0;
+        max-width: 100%;
+    }
+
+    .hero-text h1 {
+        font-size: 1.6rem;
+        white-space: normal;
+        /* permite que el texto fluya en pantallas chicas */
     }
 
     .hero-image {
         position: relative;
         width: 100%;
+        max-width: 500px;
         right: 0;
         transform: none;
         top: 0;
@@ -433,7 +462,53 @@ h6 {
         grid-template-columns: 1fr;
     }
 
+    .split-section {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    .split-left,
+    .split-right {
+        height: 600px;
+    }
+
+    .carousel-track {
+        left: 1.5rem;
+        right: 1.5rem;
+        bottom: 4.5rem;
+        min-height: 10rem;
+    }
+
+    .carousel-dots {
+        justify-content: center;
+        bottom: 1.5rem;
+        width: 100%;
+        left: 0;
+    }
+
+    .split-right-overlay p {
+        font-size: 1.35rem;
+        /* un poco más chico en mobile */
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        /* ayuda a leer si el fondo es claro */
+    }
+
     .bottom-grid {
         grid-template-columns: 1fr;
+        min-height: auto;
+    }
+
+    .grid-item {
+        height: auto;
+        /* deja que el contenido defina el alto */
+        padding-bottom: 2rem;
+    }
+
+    .grid-image {
+        height: 300px;
+    }
+
+    .grid-content {
+        padding: 1.5rem;
     }
 }
