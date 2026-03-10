@@ -73,7 +73,7 @@ h6 {
 }
 
 .logo-img {
-    height: 42px;
+    height: 54px;
     width: auto;
     display: block;
 }
@@ -529,6 +529,10 @@ h6 {
     .nav-container {
         justify-content: space-between;
         padding: 0 1.5rem;
+    }
+
+    .logo-img {
+        height: 46px;
     }
 
     .hero-content {
