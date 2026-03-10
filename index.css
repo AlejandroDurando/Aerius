@@ -64,7 +64,7 @@ h6 {
 
 .nav-container {
     width: 100%;
-    padding: 0 6rem;
+    padding: 0 45px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -145,7 +145,7 @@ h6 {
 .hero-text {
     position: relative;
     z-index: 2;
-    padding-left: 6rem;
+    padding-left: 45px;
     max-width: 600px;
 }
 
