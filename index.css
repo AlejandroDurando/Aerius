@@ -363,10 +363,11 @@ h6 {
     object-position: center center;
 }
 
-/* matriz.png: ocupar todo el ancho */
+/* matriz.png: ocupar todo el ancho sin cortes arriba */
 .grid-item:nth-child(1) .grid-image img {
     object-fit: cover;
-    object-position: center center;
+    object-position: top center;
+    /* Prioriza que se vea la parte de arriba */
 }
 
 /* car2.png: mostrar cubriendo igual que las demás */
@@ -626,8 +627,13 @@ h6 {
     }
 
     .grid-image {
-        height: 250px;
+        height: auto;
         flex-shrink: 0;
+    }
+
+    .grid-image img {
+        height: auto;
+        display: block;
     }
 
     .grid-content {
