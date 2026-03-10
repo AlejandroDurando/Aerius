@@ -361,11 +361,10 @@ h6 {
     object-position: center center;
 }
 
-/* matriz.png: mostrar completa */
+/* matriz.png: ocupar todo el ancho */
 .grid-item:nth-child(1) .grid-image img {
-    object-fit: contain;
-    background-color: #f7f7f7;
-    /* fondo ligero para que no flote en blanco puro si sobra espacio */
+    object-fit: cover;
+    object-position: center center;
 }
 
 /* car2.png: mostrar cubriendo igual que las demás */
