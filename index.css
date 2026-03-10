@@ -381,16 +381,19 @@ h6 {
 }
 
 .grid-content h3 {
-    font-size: 1.4rem;
+    font-size: 1.55rem;
+    /* Aumentado de 1.4rem */
     margin-bottom: 1rem;
     font-weight: 500;
     font-family: var(--font-main);
-    /* Cambiado a la fuente del cuerpo */
 }
 
 .grid-content p {
-    font-size: 0.9rem;
+    font-size: 1.05rem;
+    /* Aumentado de 0.9rem */
     color: var(--color-text-muted);
+    line-height: 1.6;
+    /* Mejora la lectura en varios renglones */
 }
 
 /* The Hover Black Box Requirement */
