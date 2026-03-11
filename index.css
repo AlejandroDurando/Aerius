@@ -72,7 +72,8 @@ h6 {
 }
 
 .logo-img {
-    height: 42px;
+    height: 38px;
+    /* Levemente más pequeño */
     width: auto;
     display: block;
 }
@@ -82,7 +83,8 @@ h6 {
     gap: 2rem;
     list-style: none;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 2.5px solid #000;
+    /* Más gruesa y negra */
 }
 
 .nav-links a {
@@ -154,8 +156,8 @@ h6 {
     font-weight: 400;
     line-height: 1.2;
     letter-spacing: -0.02em;
-    color: #444;
-    /* Gris oscuro */
+    color: #5f5f5f;
+    /* Gris oscuro, no negro */
     margin-bottom: 1.4rem;
     white-space: nowrap;
     /* cada línea del <br> queda fija */
@@ -181,7 +183,8 @@ h6 {
 
 .btn-pill {
     display: inline-block;
-    padding: 0.85rem 2.2rem;
+    padding: 0.72rem 2.2rem;
+    /* Levemente menos alto */
     border-radius: 50px;
     text-decoration: none;
     font-size: 0.85rem;
