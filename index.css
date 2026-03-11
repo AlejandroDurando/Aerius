@@ -150,7 +150,7 @@ h6 {
 }
 
 .hero-text h1 {
-    font-size: 2.8rem;
+    font-size: 2.3rem;
     font-weight: 400;
     line-height: 1.2;
     letter-spacing: -0.02em;
@@ -162,7 +162,7 @@ h6 {
 }
 
 .hero-text p {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     font-weight: 400;
     line-height: 1.6;
     color: #444;
@@ -260,10 +260,12 @@ h6 {
 }
 
 .carousel-slide p {
-    font-size: 0.88rem;
+    font-size: 0.95rem;
+    /* Aumentado para coincidir con el hero */
     line-height: 1.7;
     color: #1a1a1a;
-    max-width: 310px;
+    max-width: 360px;
+    /* Un poco más ancho para compensar el zoom */
 }
 
 /* Dots siempre fijos en la esquina inferior izquierda */
@@ -324,16 +326,18 @@ h6 {
 .split-right-overlay p {
     color: #fff;
     /* Blanco */
-    font-size: 1.5rem;
+    font-size: 2.3rem;
+    /* Igual que el h1 del hero */
     font-weight: 400;
-    line-height: 1.2;
+    line-height: 1.1;
     letter-spacing: -0.02em;
     font-family: var(--font-title);
 }
 
 .split-right-overlay .btn-pill {
-    padding: 0.7rem 2.5rem;
-    font-size: 0.78rem;
+    padding: 0.85rem 2.8rem;
+    /* Botón un poco más robusto */
+    font-size: 0.85rem;
 }
 
 
