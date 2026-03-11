@@ -389,7 +389,10 @@ h6 {
     font-size: 1.55rem;
     /* Aumentado de 1.4rem */
     margin-bottom: 1rem;
-    font-weight: 500;
+    font-weight: 400;
+    /* Peso normal/regular para quitar la negrita */
+    line-height: 1.15;
+    /* Menor espacio entre renglones */
     font-family: var(--font-main);
 }
 
