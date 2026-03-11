@@ -262,7 +262,7 @@ h6 {
 .carousel-slide p {
     font-size: 0.85rem;
     /* Aumentado para coincidir con el hero */
-    line-height: 1.7;
+    line-height: 1.55;
     color: #1a1a1a;
     max-width: 360px;
     /* Un poco más ancho para compensar el zoom */
