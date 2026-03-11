@@ -318,8 +318,8 @@ h6 {
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 2.5rem 4rem;
-    /* ajuste de posición sobre el difuminado */
+    padding: 2.5rem 4rem 2.5rem 4.8rem;
+    /* Aumentado el último valor (4.8rem) para mover a la derecha */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -330,8 +330,8 @@ h6 {
 .split-right-overlay p {
     color: #fff;
     /* Blanco */
-    font-size: 2.3rem;
-    /* Igual que el h1 del hero */
+    font-size: 32px;
+    /* Reducido para que sea levemente más chica */
     font-weight: 400;
     line-height: 1.1;
     letter-spacing: -0.02em;
@@ -339,8 +339,8 @@ h6 {
 }
 
 .split-right-overlay .btn-pill {
-    padding: 0.85rem 2.8rem;
-    /* Botón un poco más robusto */
+    padding: 0.60rem 2.8rem;
+    /* Menos alto, igual que los del hero */
     font-size: 0.85rem;
 }
 
