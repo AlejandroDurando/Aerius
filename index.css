@@ -381,20 +381,21 @@ h6 {
 }
 
 .grid-content {
-    padding: 2rem 3.5rem;
-    /* Aumentado padding lateral para "apretar" el texto y forzar 5 renglones */
+    padding: 2.5rem 4rem 6rem;
+    /* Aumentado el padding inferior para elevar el texto */
 }
 
 .grid-content h3 {
-    font-size: 1.55rem;
-    /* Aumentado de 1.4rem */
+    font-size: 2.3rem;
+    /* Igualado al título del hero */
     margin-bottom: 1rem;
     font-weight: 500;
     font-family: var(--font-main);
 }
 
 .grid-content p {
-    font-size: 0.92rem;
+    font-size: 0.85rem;
+    /* Igualado al párrafo del hero */
     /* Tamaño levemente más pequeño */
     color: var(--color-text-muted);
     line-height: 1.5;
