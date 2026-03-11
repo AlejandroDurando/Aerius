@@ -82,9 +82,10 @@ h6 {
     display: flex;
     gap: 2rem;
     list-style: none;
-    padding-bottom: 0.5rem;
-    border-bottom: 2.5px solid #000;
-    /* Más gruesa y negra */
+    padding: 0 1.2rem 0.5rem;
+    /* Padding lateral para extender la línea */
+    border-bottom: 2.2px solid #555;
+    /* Gris oscuro y levemente menos gruesa */
 }
 
 .nav-links a {
