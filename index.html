@@ -49,6 +49,7 @@
     <main>
         <!-- Hero Section -->
         <section class="hero">
+            <video class="hero-video-right" autoplay muted playsinline src="assets/images/video_hero.mp4"></video>
             <div class="hero-text">
                 <h1>La ingeniería automotriz<br>empieza en la perspectiva</h1>
                 <p>Desarrollamos y asesoramos soluciones de ingeniería para la industria <br>automotriz, aportando una
@@ -215,6 +216,21 @@
                 menuToggle.classList.remove('active');
             });
         });
+
+        // Mostrar texto del hero al terminar el video
+        const heroVideo = document.querySelector('.hero-video-right');
+        const heroText = document.querySelector('.hero-text');
+
+        if (heroVideo && heroText) {
+            heroVideo.addEventListener('ended', () => {
+                heroText.classList.add('show-hero-text');
+            });
+
+            // Fallback: por si acaso el video tarda mucho en cargar o el navegador bloquea el autoplay
+            setTimeout(() => {
+                heroText.classList.add('show-hero-text');
+            }, 6000); // 6 segundos (ajustar según duración del video)
+        }
     </script>
 
 </body>
