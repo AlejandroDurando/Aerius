@@ -112,27 +112,29 @@
         const heroVideo = document.querySelector('.hero-video-right');
         const heroText = document.querySelector('.hero-text');
 
-        if (heroVideo && heroText) {
-            let slowedDown = false; // Bandera para no aplicar el cambio de velocidad múltiples veces
+        const heroSection = document.querySelector('.hero');
 
-            // Escuchar el progreso del video
+        function showHero() {
+            heroText.classList.add('show-hero-text');
+            heroSection.classList.add('show-overlay');
+        }
+
+        if (heroVideo && heroText) {
+            let slowedDown = false;
+
             heroVideo.addEventListener('timeupdate', () => {
-                // Si faltan 2 segundos o menos para que termine
                 if (!slowedDown && heroVideo.duration - heroVideo.currentTime <= 2) {
-                    heroVideo.playbackRate = 0.5; // Reducir velocidad a la mitad
+                    heroVideo.playbackRate = 0.5;
                     slowedDown = true;
                 }
             });
 
             heroVideo.addEventListener('ended', () => {
-                heroText.classList.add('show-hero-text');
-                heroVideo.playbackRate = 1.0; // Restaurar velocidad por si se reinicia
+                heroVideo.playbackRate = 1.0;
+                showHero();
             });
 
-            // Fallback: por si acaso el video tarda mucho en cargar o el navegador bloquea el autoplay
-            setTimeout(() => {
-                heroText.classList.add('show-hero-text');
-            }, 6000); // 6 segundos (ajustar según duración del video normal)
+            setTimeout(showHero, 6000);
         }
     </script>
 
