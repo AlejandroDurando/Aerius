@@ -3,8 +3,7 @@
     --color-bg: #FFFFFF;
     --color-text-main: #000000;
     --color-text-muted: #666666;
-    --color-accent-red: #E30613;
-    /* A more vibrant automotive red */
+    --color-accent-red: #e70000;
     --color-accent-red-hover: #C20510;
     --color-gray-light: #F2F2F2;
     --color-gray-dark: #111111;
@@ -144,16 +143,16 @@ h6 {
 .logo-hero-img {
     height: 52px;
     display: block;
-    filter: invert(12%) sepia(100%) saturate(6500%) hue-rotate(355deg) brightness(90%) contrast(115%);
+    filter: brightness(0) saturate(100%) invert(13%) sepia(98%) saturate(7000%) hue-rotate(0deg) brightness(92%) contrast(115%);
 }
 
 .logo-tagline {
     display: block;
     text-align: left;
-    font-family: var(--font-title);
+    font-family: var(--font-main);
     font-size: 0.6rem;
     font-weight: 400;
-    color: #777777;
+    color: #6e6e6e;
     letter-spacing: 0.05em;
     margin-top: 0.1rem;
     margin-bottom: 0;
@@ -227,27 +226,32 @@ h6 {
 }
 
 .hero-services {
-    display: flex;
-    flex-direction: column;
-    gap: 0.9rem;
+    position: relative;
     margin-bottom: 2rem;
+}
+
+.slide {
+    display: none;
+}
+
+.slide.active {
+    display: block;
+    animation: fadeSlide 0.5s ease;
+}
+
+@keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 .hero-service-item h4 {
     font-family: var(--font-title);
-    font-size: 0.75rem;
-    font-weight: 400;
-    color: #2a2a2a;
-    margin-bottom: 0.25rem;
-}
-
-.hero-service-item:first-child h4 {
     font-size: 2.25rem;
     font-weight: 400;
     line-height: 1.15;
     letter-spacing: -0.02em;
-    margin-bottom: 0.5rem;
     color: #333333;
+    margin-bottom: 0.5rem;
 }
 
 .hero-service-item p {
@@ -255,6 +259,27 @@ h6 {
     color: #444;
     line-height: 1.55;
     margin-bottom: 0;
+}
+
+.slider-nav {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1.2rem;
+}
+
+.slider-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.2);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.3s ease;
+}
+
+.slider-dot.active {
+    background: rgba(0, 0, 0, 0.7);
 }
 
 .hero-actions {

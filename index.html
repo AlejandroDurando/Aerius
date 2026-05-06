@@ -33,17 +33,28 @@
             </div>
             <div class="hero-text">
                 <div class="hero-services">
-                    <div class="hero-service-item">
-                        <h4>Mirada integral de ingeniería</h4>
-                        <p>Analizamos cada proyecto como parte de un sistema completo, considerando sus variables técnicas, productivas y económicas para definir soluciones precisas y eficientes.</p>
+                    <div class="slide active">
+                        <div class="hero-service-item">
+                            <h4>Mirada integral de ingeniería</h4>
+                            <p>Analizamos cada proyecto como parte de un sistema completo, considerando sus variables técnicas, productivas y económicas para definir soluciones precisas y eficientes.</p>
+                        </div>
                     </div>
-                    <div class="hero-service-item">
-                        <h4>Desarrollo de matrices y soluciones técnicas</h4>
-                        <p>Diseñamos y asesoramos el desarrollo de matrices, dispositivos y herramientas industriales para procesos de alta precisión, en entornos productivos exigentes.</p>
+                    <div class="slide">
+                        <div class="hero-service-item">
+                            <h4>Desarrollo de matrices y soluciones técnicas</h4>
+                            <p>Diseñamos y asesoramos el desarrollo de matrices, dispositivos y herramientas industriales para procesos de alta precisión, en entornos productivos exigentes.</p>
+                        </div>
                     </div>
-                    <div class="hero-service-item">
-                        <h4>Asesoramiento para la industria automotriz</h4>
-                        <p>Acompañamos proyectos del sector con criterio técnico, experiencia y visión estratégica sobre procesos e implementaciones industriales, adaptándonos a las necesidades de cada cliente.</p>
+                    <div class="slide">
+                        <div class="hero-service-item">
+                            <h4>Asesoramiento para la industria automotriz</h4>
+                            <p>Acompañamos proyectos del sector con criterio técnico, experiencia y visión estratégica sobre procesos e implementaciones industriales, adaptándonos a las necesidades de cada cliente.</p>
+                        </div>
+                    </div>
+                    <div class="slider-nav">
+                        <button class="slider-dot active" data-index="0"></button>
+                        <button class="slider-dot" data-index="1"></button>
+                        <button class="slider-dot" data-index="2"></button>
                     </div>
                 </div>
                 <div class="hero-actions">
@@ -59,7 +70,7 @@
     </footer>
 
     <script>
-        // Mostrar texto del hero al terminar el video y efecto slow-motion
+        // Video hero
         const heroVideo = document.querySelector('.hero-video-right');
         const heroText = document.querySelector('.hero-text');
 
@@ -71,6 +82,34 @@
             heroVideo.addEventListener('ended', showHero);
             setTimeout(showHero, 6000);
         }
+
+        // Slider
+        const slides = document.querySelectorAll('.hero-services .slide');
+        const dots = document.querySelectorAll('.slider-dot');
+        let current = 0;
+        let autoplay;
+
+        function goToSlide(index) {
+            slides[current].classList.remove('active');
+            dots[current].classList.remove('active');
+            current = index;
+            slides[current].classList.add('active');
+            dots[current].classList.add('active');
+        }
+
+        function nextSlide() {
+            goToSlide((current + 1) % slides.length);
+        }
+
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => {
+                clearInterval(autoplay);
+                goToSlide(i);
+                autoplay = setInterval(nextSlide, 5000);
+            });
+        });
+
+        autoplay = setInterval(nextSlide, 5000);
     </script>
 
 </body>
