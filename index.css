@@ -132,6 +132,33 @@ h6 {
     transform: rotate(-45deg) translate(5px, -5px);
 }
 
+/* Hero Logo */
+.hero-logo {
+    position: absolute;
+    top: 2.5rem;
+    left: 8rem;
+    z-index: 2;
+    display: inline-block;
+}
+
+.logo-hero-img {
+    height: 52px;
+    display: block;
+    filter: brightness(0) invert(1);
+}
+
+.logo-tagline {
+    display: block;
+    text-align: right;
+    font-family: var(--font-title);
+    font-size: 0.5rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.45);
+    letter-spacing: 0.05em;
+    margin-top: 0.3rem;
+    margin-bottom: 0;
+}
+
 /* Hero Section */
 .hero {
     height: 100vh;
@@ -230,12 +257,17 @@ h6 {
 
 .hero-service-item h4 {
     font-family: var(--font-main);
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     font-weight: 600;
     color: #fff;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
     margin-bottom: 0.25rem;
+}
+
+.hero-service-item:first-child h4 {
+    font-family: var(--font-title);
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
 }
 
 .hero-service-item p {

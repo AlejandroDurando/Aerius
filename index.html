@@ -23,39 +23,15 @@
 
 <body>
 
-    <!-- Navbar -->
-    <header class="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                <img src="assets/images/aerius.png" alt="" class="logo-img">
-            </div>
-            <nav>
-                <button class="menu-toggle" aria-label="Abrir menú">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-links">
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Enfoque</a></li>
-                    <li><a href="#">Formaciones</a></li>
-                    <li><a href="#">Casos</a></li>
-                    <li><a href="#">Equipo</a></li>
-                    <li><a href="#">Contacto</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
     <main>
         <!-- Hero Section -->
         <section class="hero">
             <video class="hero-video-right" autoplay muted playsinline src="assets/images/video_hero_nuevo.mp4"></video>
+            <div class="hero-logo">
+                <img src="assets/images/aerius.png" alt="Aerius" class="logo-hero-img">
+                <p class="logo-tagline">Ingeniería con perspectiva</p>
+            </div>
             <div class="hero-text">
-                <h1>La ingeniería automotriz<br>empieza en la perspectiva</h1>
-                <p>Desarrollamos y asesoramos soluciones de ingeniería para la industria <br>automotriz, aportando una
-                    mirada integral sobre matrices, procesos y<br> decisiones técnicas que definen la precisión del
-                    resultado final.</p>
                 <div class="hero-services">
                     <div class="hero-service-item">
                         <h4>Mirada integral de ingeniería</h4>
@@ -83,31 +59,6 @@
     </footer>
 
     <script>
-        // Mobile Menu Toggle
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-
-        menuToggle.addEventListener('click', (e) => {
-            e.stopPropagation(); // Evita que el click se propague al document
-            navLinks.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-        });
-
-        // Cerrar al hacer click afuera
-        document.addEventListener('click', (e) => {
-            if (navLinks.classList.contains('active') && !navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
-                navLinks.classList.remove('active');
-                menuToggle.classList.remove('active');
-            }
-        });
-
-        // Cerrar al clickear un link
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                menuToggle.classList.remove('active');
-            });
-        });
         // Mostrar texto del hero al terminar el video y efecto slow-motion
         const heroVideo = document.querySelector('.hero-video-right');
         const heroText = document.querySelector('.hero-text');
