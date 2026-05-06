@@ -70,19 +70,6 @@
     </footer>
 
     <script>
-        // Video hero
-        const heroVideo = document.querySelector('.hero-video-right');
-        const heroText = document.querySelector('.hero-text');
-
-        function showHero() {
-            heroText.classList.add('show-hero-text');
-        }
-
-        if (heroVideo && heroText) {
-            heroVideo.addEventListener('ended', showHero);
-            setTimeout(showHero, 6000);
-        }
-
         // Slider
         const slides = document.querySelectorAll('.hero-services .slide');
         const dots = document.querySelectorAll('.slider-dot');
@@ -109,7 +96,22 @@
             });
         });
 
-        autoplay = setInterval(nextSlide, 7000);
+        // Video hero — el autoplay del slider arranca cuando aparece el texto
+        const heroVideo = document.querySelector('.hero-video-right');
+        const heroText = document.querySelector('.hero-text');
+        let heroShown = false;
+
+        function showHero() {
+            if (heroShown) return;
+            heroShown = true;
+            heroText.classList.add('show-hero-text');
+            autoplay = setInterval(nextSlide, 7000);
+        }
+
+        if (heroVideo && heroText) {
+            heroVideo.addEventListener('ended', showHero);
+            setTimeout(showHero, 6000);
+        }
     </script>
 
 </body>
