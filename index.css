@@ -140,24 +140,20 @@ h6 {
     display: inline-block;
 }
 
-.logo-hero-img {
-    height: 52px;
-    display: block;
-    filter: brightness(0) saturate(100%) invert(13%) sepia(98%) saturate(7000%) hue-rotate(0deg) brightness(92%) contrast(115%);
+.logo-crop {
+    width: 278px;
+    height: 96px;
+    overflow: hidden;
+    position: relative;
 }
 
-.logo-tagline {
+.logo-hero-img {
+    width: 814px;
+    height: auto;
+    position: absolute;
+    top: -54px;
+    left: -280px;
     display: block;
-    text-align: left;
-    font-family: var(--font-main);
-    font-size: 12px;
-    line-height: 15px;
-    font-weight: 400;
-    color: #6e6e6e;
-    letter-spacing: 0.05em;
-    margin-top: 0.1rem;
-    margin-bottom: 0;
-    margin-left: 4rem;
 }
 
 /* Hero Section */
@@ -189,7 +185,7 @@ h6 {
     position: relative;
     z-index: 2;
     padding-left: 8rem;
-    padding-top: 204px;
+    padding-top: 231px;
     max-width: 620px;
     opacity: 0;
     visibility: hidden;
