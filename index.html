@@ -1,13 +1,91 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>new-page</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<!-- Vercel Trigger -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aerius | Ingeniería Automotriz e Industrial</title>
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <meta name="description"
+        content="Desarrollamos y asesoramos soluciones de ingeniería para la industria automotriz.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&family=Orbitron:wght@400;500;600;700&family=Roboto+Mono:wght@700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <video class="hero-video-right" autoplay muted playsinline src="assets/images/video_hero_nuevo.mp4"></video>
+            <div class="hero-logo">
+                <img src="assets/images/aerius.png" alt="Aerius" class="logo-hero-img">
+                <p class="logo-tagline">Ingeniería con perspectiva</p>
+            </div>
+            <div class="hero-text">
+                <div class="hero-services">
+                    <div class="hero-service-item">
+                        <h4>Mirada integral de ingeniería</h4>
+                        <p>Analizamos cada proyecto como parte de un sistema completo, considerando sus variables técnicas, productivas y económicas para definir soluciones precisas y eficientes.</p>
+                    </div>
+                    <div class="hero-service-item">
+                        <h4>Desarrollo de matrices y soluciones técnicas</h4>
+                        <p>Diseñamos y asesoramos el desarrollo de matrices, dispositivos y herramientas industriales para procesos de alta precisión, en entornos productivos exigentes.</p>
+                    </div>
+                    <div class="hero-service-item">
+                        <h4>Asesoramiento para la industria automotriz</h4>
+                        <p>Acompañamos proyectos del sector con criterio técnico, experiencia y visión estratégica sobre procesos e implementaciones industriales, adaptándonos a las necesidades de cada cliente.</p>
+                    </div>
+                </div>
+                <div class="hero-actions">
+                    <a href="https://wa.me/5491149472421" class="btn-pill btn-red" target="_blank" rel="noopener">Contacto</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer style="padding: 2rem; text-align: center; border-top: 1px solid #EEE;">
+        <p>&copy; 2024 Aerius. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Mostrar texto del hero al terminar el video y efecto slow-motion
+        const heroVideo = document.querySelector('.hero-video-right');
+        const heroText = document.querySelector('.hero-text');
+
+        function showHero() {
+            heroText.classList.add('show-hero-text');
+        }
+
+        if (heroVideo && heroText) {
+            let slowedDown = false;
+
+            heroVideo.addEventListener('timeupdate', () => {
+                if (!slowedDown && heroVideo.duration - heroVideo.currentTime <= 2) {
+                    heroVideo.playbackRate = 0.5;
+                    slowedDown = true;
+                }
+            });
+
+            heroVideo.addEventListener('ended', () => {
+                heroVideo.playbackRate = 1.0;
+                showHero();
+            });
+
+            setTimeout(showHero, 6000);
+        }
+    </script>
+
+</body>
+
 </html>
