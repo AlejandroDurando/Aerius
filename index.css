@@ -153,9 +153,9 @@ h6 {
     font-family: var(--font-title);
     font-size: 0.6rem;
     font-weight: 400;
-    color: #999999;
+    color: #777777;
     letter-spacing: 0.05em;
-    margin-top: 0.3rem;
+    margin-top: 0.1rem;
     margin-bottom: 0;
     margin-left: 4rem;
 }
