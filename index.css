@@ -141,7 +141,7 @@ h6 {
 }
 
 .logo-crop {
-    width: 278px;
+    width: 330px;
     height: 96px;
     overflow: hidden;
     position: relative;
@@ -152,7 +152,7 @@ h6 {
     height: auto;
     position: absolute;
     top: -54px;
-    left: -280px;
+    left: -240px;
     display: block;
 }
 
