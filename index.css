@@ -786,9 +786,9 @@ h6 {
         left: -144px;
     }
 
-    /* Video: ligeramente a la derecha y más abajo */
+    /* Video: auto a la derecha (x bajo = muestra lado izq del video = auto va a la derecha) */
     .hero-video-right {
-        object-position: 75% 20%;
+        object-position: 25% 30%;
     }
 
     /* Slider títulos: más chicos para mobile */
