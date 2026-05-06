@@ -151,13 +151,13 @@ h6 {
     display: block;
     text-align: left;
     font-family: var(--font-title);
-    font-size: 0.5rem;
+    font-size: 0.6rem;
     font-weight: 400;
     color: #999999;
     letter-spacing: 0.05em;
     margin-top: 0.3rem;
     margin-bottom: 0;
-    padding-left: 0.35rem;
+    padding-left: 1.8rem;
 }
 
 /* Hero Section */
