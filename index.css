@@ -144,7 +144,7 @@ h6 {
 .logo-hero-img {
     height: 52px;
     display: block;
-    filter: brightness(0) invert(1);
+    filter: invert(12%) sepia(100%) saturate(6500%) hue-rotate(355deg) brightness(90%) contrast(115%);
 }
 
 .logo-tagline {
@@ -165,30 +165,11 @@ h6 {
     width: 100%;
     position: relative;
     background: #FFFFFF;
-    /* Fondo blanco base */
     display: flex;
-    align-items: center;
-    /* centrado vertical */
+    align-items: flex-start;
     overflow: hidden;
 }
 
-/* Capa de oscurecimiento pseudo-elemento para que el texto sea legible */
-.hero::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.1) 60%, rgba(0, 0, 0, 0) 100%);
-    z-index: 1;
-    opacity: 0;
-    transition: opacity 1.5s ease-out;
-}
-
-.hero.show-overlay::after {
-    opacity: 1;
-}
 
 .hero-video-right {
     position: absolute;
@@ -207,14 +188,13 @@ h6 {
     position: relative;
     z-index: 2;
     padding-left: 8rem;
-    max-width: 600px;
+    padding-top: 7rem;
+    max-width: 620px;
     opacity: 0;
-    /* Oculto o transparente al principio */
     visibility: hidden;
     transform: translateY(20px);
-    /* Un pequeño desplazamiento hacia abajo inicial */
     transition: opacity 1.5s ease-out, transform 1.5s ease-out, visibility 1.5s;
-    /* Animación suave al aparecer */
+    text-shadow: 0 1px 20px rgba(0, 0, 0, 0.6);
 }
 
 /* Clase que agregaremos vía JS cuando termine el video */
@@ -251,23 +231,22 @@ h6 {
     flex-direction: column;
     gap: 0.9rem;
     margin-bottom: 2rem;
-    padding-left: 1rem;
-    border-left: 2px solid var(--color-accent-red);
 }
 
 .hero-service-item h4 {
-    font-family: var(--font-main);
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-family: var(--font-title);
+    font-size: 0.75rem;
+    font-weight: 400;
     color: #fff;
     margin-bottom: 0.25rem;
 }
 
 .hero-service-item:first-child h4 {
-    font-family: var(--font-title);
-    font-size: 1rem;
+    font-size: 2.25rem;
     font-weight: 400;
-    letter-spacing: -0.01em;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
 }
 
 .hero-service-item p {
@@ -767,3 +746,6 @@ h6 {
         flex-grow: 1;
     }
 }
+
+/* Hide Vercel toolbar */
+vercel-toolbar { display: none !important; }
