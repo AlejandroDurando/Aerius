@@ -68,20 +68,7 @@
         }
 
         if (heroVideo && heroText) {
-            let slowedDown = false;
-
-            heroVideo.addEventListener('timeupdate', () => {
-                if (!slowedDown && heroVideo.duration - heroVideo.currentTime <= 2) {
-                    heroVideo.playbackRate = 0.5;
-                    slowedDown = true;
-                }
-            });
-
-            heroVideo.addEventListener('ended', () => {
-                heroVideo.playbackRate = 1.0;
-                showHero();
-            });
-
+            heroVideo.addEventListener('ended', showHero);
             setTimeout(showHero, 6000);
         }
     </script>
