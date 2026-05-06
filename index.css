@@ -141,18 +141,18 @@ h6 {
 }
 
 .logo-crop {
-    width: 330px;
-    height: 96px;
+    width: 292px;
+    height: 85px;
     overflow: hidden;
     position: relative;
 }
 
 .logo-hero-img {
-    width: 814px;
+    width: 720px;
     height: auto;
     position: absolute;
-    top: -54px;
-    left: -240px;
+    top: -48px;
+    left: -212px;
     display: block;
 }
 
@@ -185,7 +185,7 @@ h6 {
     position: relative;
     z-index: 2;
     padding-left: 8rem;
-    padding-top: 231px;
+    padding-top: 220px;
     max-width: 620px;
     opacity: 0;
     visibility: hidden;
