@@ -664,8 +664,9 @@ h6 {
     .hero-text {
         padding-left: 1.5rem;
         padding-right: 1.5rem;
+        padding-top: 140px;
         max-width: 100%;
-        text-align: center;
+        text-align: left;
     }
 
     .hero-text h1 {
@@ -680,8 +681,7 @@ h6 {
     }
 
     .hero-actions {
-        justify-content: center;
-        /* Botones centrados en móvil */
+        justify-content: flex-start;
         width: 100%;
         flex-wrap: wrap;
     }
@@ -767,6 +767,39 @@ h6 {
     .grid-content {
         padding: 2rem 1.5rem;
         flex-grow: 1;
+    }
+
+    /* Hero logo: más chico, arriba a la izquierda */
+    .hero-logo {
+        top: 1.5rem;
+        left: 1.5rem;
+    }
+
+    .logo-crop {
+        width: 200px;
+        height: 58px;
+    }
+
+    .logo-hero-img {
+        width: 490px;
+        top: -33px;
+        left: -144px;
+    }
+
+    /* Video: ligeramente a la derecha y más abajo */
+    .hero-video-right {
+        object-position: 75% 20%;
+    }
+
+    /* Slider títulos: más chicos para mobile */
+    .hero-service-item h4 {
+        font-size: 1.6rem;
+        line-height: 1.2;
+    }
+
+    /* Dots alineados a la izquierda */
+    .slider-nav {
+        justify-content: flex-start;
     }
 }
 
