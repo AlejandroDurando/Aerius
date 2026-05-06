@@ -153,7 +153,7 @@ h6 {
     font-family: var(--font-title);
     font-size: 0.5rem;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.45);
+    color: #999999;
     letter-spacing: 0.05em;
     margin-top: 0.3rem;
     margin-bottom: 0;
@@ -188,7 +188,7 @@ h6 {
     position: relative;
     z-index: 2;
     padding-left: 8rem;
-    padding-top: 7rem;
+    padding-top: 11rem;
     max-width: 620px;
     opacity: 0;
     visibility: hidden;
@@ -242,10 +242,11 @@ h6 {
 
 .hero-service-item:first-child h4 {
     font-size: 2.25rem;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 1.15;
     letter-spacing: -0.02em;
     margin-bottom: 0.5rem;
+    color: #333333;
 }
 
 .hero-service-item p {
