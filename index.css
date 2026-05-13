@@ -805,3 +805,13 @@ h6 {
 
 /* Hide Vercel toolbar */
 vercel-toolbar { display: none !important; }
+
+/* Mobile only break */
+.mobile-break {
+    display: none;
+}
+@media (max-width: 768px) {
+    .mobile-break {
+        display: block;
+    }
+}
