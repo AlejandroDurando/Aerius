@@ -26,7 +26,7 @@
     <main>
         <!-- Hero Section -->
         <section class="hero">
-            <video class="hero-video-right" autoplay loop muted playsinline src="assets/images/nuevovideo.mp4"></video>
+            <video class="hero-video-right" autoplay muted playsinline src="assets/images/nuevovideo.mp4"></video>
             <div class="hero-logo">
                 <div class="logo-crop">
                     <img src="assets/images/Logo_tag.svg" alt="Aerius" class="logo-hero-img">
@@ -144,9 +144,13 @@
             heroVideo.play().catch(() => {});
 
             heroVideo.addEventListener('timeupdate', () => {
-                // Mostrar texto 1 segundo antes de que termine el video (o el primer loop)
+                // Mostrar texto 1 segundo antes de que termine el video
                 if (heroVideo.duration && (heroVideo.duration - heroVideo.currentTime) <= 1) {
                     showHero();
+                }
+                // Pausar el video justo antes de que termine para que no se reinicie
+                if (heroVideo.duration && (heroVideo.duration - heroVideo.currentTime) <= 0.1) {
+                    heroVideo.pause();
                 }
             });
 
