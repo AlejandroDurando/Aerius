@@ -26,7 +26,7 @@
     <main>
         <!-- Hero Section -->
         <section class="hero">
-            <video class="hero-video-right" autoplay muted playsinline src="assets/images/nuevovideo.mp4"></video>
+            <video class="hero-video-right" autoplay loop muted playsinline src="assets/images/nuevovideo.mp4"></video>
             <div class="hero-logo">
                 <div class="logo-crop">
                     <img src="assets/images/Logo_tag.svg" alt="Aerius" class="logo-hero-img">
@@ -140,7 +140,17 @@
         }
 
         if (heroVideo && heroText) {
-            heroVideo.addEventListener('ended', showHero);
+            // Intentar forzar reproducción en caso de políticas estrictas del navegador
+            heroVideo.play().catch(() => {});
+
+            heroVideo.addEventListener('timeupdate', () => {
+                // Mostrar texto 1 segundo antes de que termine el video (o el primer loop)
+                if (heroVideo.duration && (heroVideo.duration - heroVideo.currentTime) <= 1) {
+                    showHero();
+                }
+            });
+
+            // Fallback por si el video falla al cargar
             setTimeout(showHero, 6000);
         }
     </script>
