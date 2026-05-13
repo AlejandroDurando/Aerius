@@ -47,7 +47,7 @@
                     </div>
                     <div class="slide">
                         <div class="hero-service-item">
-                            <h4>Desarrollo de matrices<br class="mobile-break">y soluciones técnicas</h4>
+                            <h4>Desarrollo de matrices <br class="mobile-break">y soluciones técnicas</h4>
                             <p>Diseñamos y asesoramos el desarrollo de matrices, dispositivos y herramientas
                                 industriales para procesos de alta precisión, en entornos productivos exigentes.</p>
                         </div>
@@ -184,20 +184,25 @@
                 if (remaining <= 0.1) heroVideo.pause();
             });
 
-            // Fallback si timeupdate no capturó el último segundo exacto
+            // Cuando el video realmente empieza a reproducirse, programar el texto
+            // desde ese momento exacto (cubre mobile con carga lenta)
+            let textTimer = null;
+            heroVideo.addEventListener('playing', () => {
+                clearTimeout(textTimer);
+                if (!heroVideo.duration) return;
+                const remaining = heroVideo.duration - heroVideo.currentTime;
+                const delay = Math.max(0, (remaining - 1) * 1000);
+                textTimer = setTimeout(showHero, delay);
+            });
+
+            // Fallback si timeupdate no capturó el último frame exacto
             heroVideo.addEventListener('ended', () => {
                 showHero();
                 heroVideo.pause();
             });
 
-            // Fallback dinámico: calcula el delay según la duración real del video
-            heroVideo.addEventListener('loadedmetadata', () => {
-                const delay = Math.max(0, (heroVideo.duration - 1) * 1000);
-                setTimeout(showHero, delay);
-            });
-
-            // Último fallback si loadedmetadata no dispara (hardcoded 7s)
-            setTimeout(showHero, 7000);
+            // Último fallback: si el video nunca arranca (sin conexión, etc.)
+            setTimeout(showHero, 12000);
         }
     </script>
 
