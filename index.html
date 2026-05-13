@@ -151,6 +151,11 @@
             // Garantizar que esté silenciado para iOS
             heroVideo.muted = true;
             heroVideo.defaultMuted = true;
+            heroVideo.setAttribute('playsinline', '');
+
+            document.addEventListener('DOMContentLoaded', () => {
+                heroVideo.play().catch(console.error);
+            });
 
             // Intentar forzar reproducción en caso de políticas estrictas del navegador
             heroVideo.play().catch(() => {

@@ -225,7 +225,7 @@ h6 {
 .hero-services {
     position: relative;
     margin-bottom: 2rem;
-    height: 180px; /* Prevent button jump on desktop */
+    height: 220px; /* Prevent button jump on desktop */
 }
 
 .slide {
