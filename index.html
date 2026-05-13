@@ -26,7 +26,7 @@
     <main>
         <!-- Hero Section -->
         <section class="hero">
-            <video class="hero-video-right" autoplay="autoplay" muted="muted" playsinline="playsinline" preload="auto"
+            <video class="hero-video-right" autoplay muted playsinline webkit-playsinline preload="auto"
                 src="assets/images/nuevovideo.mp4"></video>
             <div class="hero-logo">
                 <div class="logo-crop">
@@ -148,29 +148,40 @@
         }
 
         if (heroVideo && heroText) {
-            // Garantizar que esté silenciado para iOS
             heroVideo.muted = true;
             heroVideo.defaultMuted = true;
             heroVideo.setAttribute('playsinline', '');
+            heroVideo.setAttribute('webkit-playsinline', '');
 
-            document.addEventListener('DOMContentLoaded', () => {
-                heroVideo.play().catch(console.error);
+            function tryPlay() {
+                if (!heroVideo.paused) return;
+                heroVideo.play().catch(() => {});
+            }
+
+            // El script corre al final del body, DOM ya está listo — intentar de inmediato
+            heroVideo.load();
+            tryPlay();
+
+            // iOS back/forward cache
+            window.addEventListener('pageshow', tryPlay);
+
+            // Cuando la pestaña vuelve al foco
+            document.addEventListener('visibilitychange', () => {
+                if (!document.hidden) tryPlay();
             });
 
-            // Intentar forzar reproducción en caso de políticas estrictas del navegador
-            heroVideo.play().catch(() => {
-                // Si falla, iniciar al primer toque en la pantalla
-                document.body.addEventListener('touchstart', () => {
-                    heroVideo.play();
-                }, { once: true });
+            // Fallback: primer toque o click del usuario desbloquea el autoplay
+            ['touchstart', 'click'].forEach(evt => {
+                document.addEventListener(evt, function handler() {
+                    tryPlay();
+                    document.removeEventListener(evt, handler);
+                }, { once: true, passive: true });
             });
 
             heroVideo.addEventListener('timeupdate', () => {
-                // Mostrar texto 1 segundo antes de que termine el video (7 segundos en video de 8s)
                 if (heroVideo.duration && (heroVideo.duration - heroVideo.currentTime) <= 1.0) {
                     showHero();
                 }
-                // Pausar el video justo antes de que termine para que no se reinicie
                 if (heroVideo.duration && (heroVideo.duration - heroVideo.currentTime) <= 0.1) {
                     heroVideo.pause();
                 }
