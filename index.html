@@ -26,7 +26,7 @@
     <main>
         <!-- Hero Section -->
         <section class="hero">
-            <video class="hero-video-right" autoplay muted playsinline src="assets/images/nuevovideo.mp4"></video>
+            <video class="hero-video-right" autoplay="autoplay" muted="muted" playsinline="playsinline" preload="auto" src="assets/images/nuevovideo.mp4"></video>
             <div class="hero-logo">
                 <div class="logo-crop">
                     <img src="assets/images/Logo_tag.svg" alt="Aerius" class="logo-hero-img">
@@ -140,12 +140,21 @@
         }
 
         if (heroVideo && heroText) {
+            // Garantizar que esté silenciado para iOS
+            heroVideo.muted = true;
+            heroVideo.defaultMuted = true;
+
             // Intentar forzar reproducción en caso de políticas estrictas del navegador
-            heroVideo.play().catch(() => {});
+            heroVideo.play().catch(() => {
+                // Si falla, iniciar al primer toque en la pantalla
+                document.body.addEventListener('touchstart', () => {
+                    heroVideo.play();
+                }, { once: true });
+            });
 
             heroVideo.addEventListener('timeupdate', () => {
-                // Mostrar texto 1 segundo antes de que termine el video
-                if (heroVideo.duration && (heroVideo.duration - heroVideo.currentTime) <= 1) {
+                // Mostrar texto 1 segundo antes de que termine el video (7 segundos en video de 8s)
+                if (heroVideo.duration && (heroVideo.duration - heroVideo.currentTime) <= 1.0) {
                     showHero();
                 }
                 // Pausar el video justo antes de que termine para que no se reinicie
@@ -154,8 +163,8 @@
                 }
             });
 
-            // Fallback por si el video falla al cargar
-            setTimeout(showHero, 6000);
+            // Fallback por si el video falla al cargar (8s video, fallback a los 7s)
+            setTimeout(showHero, 7000);
         }
     </script>
 
