@@ -786,9 +786,9 @@ h6 {
         left: -144px;
     }
 
-    /* Video: x=38% equilibra auto a la derecha sin pasarse */
+    /* Video: x=65% mueve el auto a la izquierda para que se vea mejor */
     .hero-video-right {
-        object-position: 38% 30%;
+        object-position: 65% 30%;
     }
 
     /* Slider títulos: más chicos para mobile */
