@@ -157,9 +157,11 @@
                 heroVideo.play().catch(() => {});
             }
 
-            // El script corre al final del body, DOM ya está listo — intentar de inmediato
-            heroVideo.load();
+            // Intentar inmediatamente (el atributo autoplay del HTML ya inicia la carga)
             tryPlay();
+
+            // Cuando el video tiene datos suficientes para reproducir (clave en mobile)
+            heroVideo.addEventListener('canplay', tryPlay, { once: true });
 
             // iOS back/forward cache
             window.addEventListener('pageshow', tryPlay);
