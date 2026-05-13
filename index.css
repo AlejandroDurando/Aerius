@@ -816,7 +816,7 @@ h6 {
 
     /* Prevent button jumping on mobile */
     .hero-services {
-        min-height: 220px;
+        height: 280px;
     }
 
     /* Hide arrows on mobile (swiping only) */
