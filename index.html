@@ -34,6 +34,8 @@
             </div>
             <div class="hero-text">
                 <div class="hero-services">
+                    <button class="slider-arrow prev-arrow" aria-label="Previous" onclick="prevSlide()">&lsaquo;</button>
+                    <button class="slider-arrow next-arrow" aria-label="Next" onclick="nextSlide()">&rsaquo;</button>
                     <div class="slide active">
                         <div class="hero-service-item">
                             <h4>Mirada integral de ingeniería</h4>
@@ -42,7 +44,7 @@
                     </div>
                     <div class="slide">
                         <div class="hero-service-item">
-                            <h4>Desarrollo de matrices<br class="mobile-break">y soluciones técnicas</h4>
+                            <h4>Desarrollo de matrices <br class="mobile-break">y soluciones técnicas</h4>
                             <p>Diseñamos y asesoramos el desarrollo de matrices, dispositivos y herramientas industriales para procesos de alta precisión, en entornos productivos exigentes.</p>
                         </div>
                     </div>
@@ -85,17 +87,44 @@
             dots[current].classList.add('active');
         }
 
-        function nextSlide() {
+        function nextSlideAuto() {
             goToSlide((current + 1) % slides.length);
+        }
+
+        function nextSlide() {
+            clearInterval(autoplay);
+            nextSlideAuto();
+            autoplay = setInterval(nextSlideAuto, 7000);
+        }
+
+        function prevSlide() {
+            clearInterval(autoplay);
+            goToSlide((current - 1 + slides.length) % slides.length);
+            autoplay = setInterval(nextSlideAuto, 7000);
         }
 
         dots.forEach((dot, i) => {
             dot.addEventListener('click', () => {
                 clearInterval(autoplay);
                 goToSlide(i);
-                autoplay = setInterval(nextSlide, 7000);
+                autoplay = setInterval(nextSlideAuto, 7000);
             });
         });
+
+        // Swiping
+        const heroServices = document.querySelector('.hero-services');
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        heroServices.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, {passive: true});
+
+        heroServices.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchEndX < touchStartX - 50) nextSlide();
+            if (touchEndX > touchStartX + 50) prevSlide();
+        }, {passive: true});
 
         // Video hero — el autoplay del slider arranca cuando aparece el texto
         const heroVideo = document.querySelector('.hero-video-right');
@@ -106,7 +135,7 @@
             if (heroShown) return;
             heroShown = true;
             heroText.classList.add('show-hero-text');
-            autoplay = setInterval(nextSlide, 7000);
+            autoplay = setInterval(nextSlideAuto, 7000);
         }
 
         if (heroVideo && heroText) {

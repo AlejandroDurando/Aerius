@@ -279,6 +279,29 @@ h6 {
     background: rgba(0, 0, 0, 0.7);
 }
 
+/* Desktop Slider Arrows */
+.slider-arrow {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    color: #6e6e6e;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.3s ease;
+}
+.slider-arrow:hover {
+    color: var(--color-accent-red);
+}
+.prev-arrow {
+    left: -2.5rem;
+}
+.next-arrow {
+    right: -1rem;
+}
+
 .hero-actions {
     display: flex;
     gap: 0.8rem;
@@ -786,9 +809,19 @@ h6 {
         left: -144px;
     }
 
-    /* Video: x=65% mueve el auto a la izquierda para que se vea mejor */
+    /* Video: ajuste de la posición del auto */
     .hero-video-right {
-        object-position: 65% 30%;
+        object-position: 48% 30%;
+    }
+
+    /* Prevent button jumping on mobile */
+    .hero-services {
+        min-height: 220px;
+    }
+
+    /* Hide arrows on mobile (swiping only) */
+    .slider-arrow {
+        display: none;
     }
 
     /* Slider títulos: más chicos para mobile */
