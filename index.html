@@ -152,7 +152,8 @@
             heroVideo.setAttribute('webkit-playsinline', '');
 
             function tryPlay() {
-                if (!heroVideo.paused) return;
+                // No reiniciar si el video ya terminó
+                if (!heroVideo.paused || heroVideo.ended) return;
                 heroVideo.play().catch(() => {});
             }
 
@@ -177,15 +178,25 @@
             });
 
             heroVideo.addEventListener('timeupdate', () => {
-                if (heroVideo.duration && (heroVideo.duration - heroVideo.currentTime) <= 1.0) {
-                    showHero();
-                }
-                if (heroVideo.duration && (heroVideo.duration - heroVideo.currentTime) <= 0.1) {
-                    heroVideo.pause();
-                }
+                if (!heroVideo.duration) return;
+                const remaining = heroVideo.duration - heroVideo.currentTime;
+                if (remaining <= 1.0) showHero();
+                if (remaining <= 0.1) heroVideo.pause();
             });
 
-            // Fallback por si el video falla al cargar (8s video, fallback a los 7s)
+            // Fallback si timeupdate no capturó el último segundo exacto
+            heroVideo.addEventListener('ended', () => {
+                showHero();
+                heroVideo.pause();
+            });
+
+            // Fallback dinámico: calcula el delay según la duración real del video
+            heroVideo.addEventListener('loadedmetadata', () => {
+                const delay = Math.max(0, (heroVideo.duration - 1) * 1000);
+                setTimeout(showHero, delay);
+            });
+
+            // Último fallback si loadedmetadata no dispara (hardcoded 7s)
             setTimeout(showHero, 7000);
         }
     </script>
