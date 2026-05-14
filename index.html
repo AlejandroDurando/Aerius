@@ -28,6 +28,11 @@
         <section class="hero">
             <video class="hero-video-right" autoplay muted playsinline webkit-playsinline preload="auto"
                 src="assets/images/nuevovideo.mp4"></video>
+            <div class="video-play-overlay" id="videoPlayOverlay" aria-hidden="true">
+                <button class="video-play-btn" aria-label="Reproducir">
+                    <svg viewBox="0 0 24 24" fill="white" width="28" height="28"><polygon points="5,3 19,12 5,21"/></svg>
+                </button>
+            </div>
             <div class="hero-logo">
                 <div class="logo-crop">
                     <img src="assets/images/Logo_tag.svg" alt="Aerius" class="logo-hero-img">
@@ -163,6 +168,15 @@
             // Cuando el video tiene datos suficientes para reproducir (clave en mobile)
             heroVideo.addEventListener('canplay', tryPlay, { once: true });
 
+            // IntersectionObserver: Chrome lo usa para decidir si permite autoplay
+            const videoObserver = new IntersectionObserver(entries => {
+                if (entries[0].isIntersecting) {
+                    tryPlay();
+                    videoObserver.disconnect();
+                }
+            }, { threshold: 0.1 });
+            videoObserver.observe(heroVideo);
+
             // iOS back/forward cache
             window.addEventListener('pageshow', tryPlay);
 
@@ -171,12 +185,18 @@
                 if (!document.hidden) tryPlay();
             });
 
-            // Fallback: primer toque o click del usuario desbloquea el autoplay
-            ['touchstart', 'click'].forEach(evt => {
-                document.addEventListener(evt, function handler() {
-                    tryPlay();
-                    document.removeEventListener(evt, handler);
-                }, { once: true, passive: true });
+            // Overlay tap-to-play: aparece si el autoplay no arrancó en 2 segundos
+            const playOverlay = document.getElementById('videoPlayOverlay');
+            heroVideo.addEventListener('playing', () => {
+                playOverlay.classList.remove('visible');
+            }, { once: true });
+            setTimeout(() => {
+                if (heroVideo.paused && !heroVideo.ended) {
+                    playOverlay.classList.add('visible');
+                }
+            }, 2000);
+            playOverlay.addEventListener('click', () => {
+                heroVideo.play().catch(() => {});
             });
 
             heroVideo.addEventListener('timeupdate', () => {

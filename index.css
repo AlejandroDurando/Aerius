@@ -842,6 +842,35 @@ h6 {
     }
 }
 
+/* Video play overlay (shown when autoplay is blocked) */
+.video-play-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s;
+}
+.video-play-overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+.video-play-btn {
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.75);
+    border-radius: 50%;
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 4px;
+    cursor: pointer;
+}
+
 /* Hide Vercel toolbar */
 vercel-toolbar { display: none !important; }
 
