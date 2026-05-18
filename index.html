@@ -10,6 +10,14 @@
     <meta name="description"
         content="Desarrollamos y asesoramos soluciones de ingeniería para la industria automotriz.">
 
+    <!-- Open Graph (actualizar og:url y og:image con la URL y una imagen de 1200x630px) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Aerius | Ingeniería Automotriz e Industrial">
+    <meta property="og:description" content="Desarrollamos y asesoramos soluciones de ingeniería para la industria automotriz.">
+    <meta property="og:url" content="https://aerius.vercel.app">
+    <meta property="og:image" content="https://aerius.vercel.app/assets/images/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,9 +48,8 @@
             </div>
             <div class="hero-text">
                 <div class="hero-services">
-                    <button class="slider-arrow prev-arrow" aria-label="Previous"
-                        onclick="prevSlide()">&lsaquo;</button>
-                    <button class="slider-arrow next-arrow" aria-label="Next" onclick="nextSlide()">&rsaquo;</button>
+                    <button class="slider-arrow prev-arrow" aria-label="Previous">&lsaquo;</button>
+                    <button class="slider-arrow next-arrow" aria-label="Next">&rsaquo;</button>
                     <div class="slide active">
                         <div class="hero-service-item">
                             <h4>Mirada integral de ingeniería</h4>
@@ -84,149 +91,7 @@
         <p>&copy; 2026 Aerius. Todos los derechos reservados.</p>
     </footer>
 
-    <script>
-        // Slider
-        const slides = document.querySelectorAll('.hero-services .slide');
-        const dots = document.querySelectorAll('.slider-dot');
-        let current = 0;
-        let autoplay;
-
-        function goToSlide(index) {
-            slides[current].classList.remove('active');
-            dots[current].classList.remove('active');
-            current = index;
-            slides[current].classList.add('active');
-            dots[current].classList.add('active');
-        }
-
-        function nextSlideAuto() {
-            goToSlide((current + 1) % slides.length);
-        }
-
-        function nextSlide() {
-            clearInterval(autoplay);
-            nextSlideAuto();
-            autoplay = setInterval(nextSlideAuto, 7000);
-        }
-
-        function prevSlide() {
-            clearInterval(autoplay);
-            goToSlide((current - 1 + slides.length) % slides.length);
-            autoplay = setInterval(nextSlideAuto, 7000);
-        }
-
-        dots.forEach((dot, i) => {
-            dot.addEventListener('click', () => {
-                clearInterval(autoplay);
-                goToSlide(i);
-                autoplay = setInterval(nextSlideAuto, 7000);
-            });
-        });
-
-        // Swiping
-        const heroServices = document.querySelector('.hero-services');
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        heroServices.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-
-        heroServices.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            if (touchEndX < touchStartX - 50) nextSlide();
-            if (touchEndX > touchStartX + 50) prevSlide();
-        }, { passive: true });
-
-        // Video hero — el autoplay del slider arranca cuando aparece el texto
-        const heroVideo = document.querySelector('.hero-video-right');
-        const heroText = document.querySelector('.hero-text');
-        let heroShown = false;
-
-        function showHero() {
-            if (heroShown) return;
-            heroShown = true;
-            heroText.classList.add('show-hero-text');
-            autoplay = setInterval(nextSlideAuto, 7000);
-        }
-
-        if (heroVideo && heroText) {
-            heroVideo.muted = true;
-            heroVideo.defaultMuted = true;
-            heroVideo.setAttribute('playsinline', '');
-            heroVideo.setAttribute('webkit-playsinline', '');
-
-            function tryPlay() {
-                // No reiniciar si el video ya terminó
-                if (!heroVideo.paused || heroVideo.ended) return;
-                heroVideo.play().catch(() => {});
-            }
-
-            // Intentar inmediatamente (el atributo autoplay del HTML ya inicia la carga)
-            tryPlay();
-
-            // Cuando el video tiene datos suficientes para reproducir (clave en mobile)
-            heroVideo.addEventListener('canplay', tryPlay, { once: true });
-
-            // IntersectionObserver: Chrome lo usa para decidir si permite autoplay
-            const videoObserver = new IntersectionObserver(entries => {
-                if (entries[0].isIntersecting) {
-                    tryPlay();
-                    videoObserver.disconnect();
-                }
-            }, { threshold: 0.1 });
-            videoObserver.observe(heroVideo);
-
-            // iOS back/forward cache
-            window.addEventListener('pageshow', tryPlay);
-
-            // Cuando la pestaña vuelve al foco
-            document.addEventListener('visibilitychange', () => {
-                if (!document.hidden) tryPlay();
-            });
-
-            // Overlay tap-to-play: aparece si el autoplay no arrancó en 2 segundos
-            const playOverlay = document.getElementById('videoPlayOverlay');
-            heroVideo.addEventListener('playing', () => {
-                playOverlay.classList.remove('visible');
-            }, { once: true });
-            setTimeout(() => {
-                if (heroVideo.paused && !heroVideo.ended) {
-                    playOverlay.classList.add('visible');
-                }
-            }, 2000);
-            playOverlay.addEventListener('click', () => {
-                heroVideo.play().catch(() => {});
-            });
-
-            heroVideo.addEventListener('timeupdate', () => {
-                if (!heroVideo.duration) return;
-                const remaining = heroVideo.duration - heroVideo.currentTime;
-                if (remaining <= 1.0) showHero();
-                if (remaining <= 0.1) heroVideo.pause();
-            });
-
-            // Cuando el video realmente empieza a reproducirse, programar el texto
-            // desde ese momento exacto (cubre mobile con carga lenta)
-            let textTimer = null;
-            heroVideo.addEventListener('playing', () => {
-                clearTimeout(textTimer);
-                if (!heroVideo.duration) return;
-                const remaining = heroVideo.duration - heroVideo.currentTime;
-                const delay = Math.max(0, (remaining - 1) * 1000);
-                textTimer = setTimeout(showHero, delay);
-            });
-
-            // Fallback si timeupdate no capturó el último frame exacto
-            heroVideo.addEventListener('ended', () => {
-                showHero();
-                heroVideo.pause();
-            });
-
-            // Último fallback: si el video nunca arranca (sin conexión, etc.)
-            setTimeout(showHero, 12000);
-        }
-    </script>
+    <script src="main.js" defer></script>
 
 </body>
 
