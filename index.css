@@ -238,28 +238,7 @@ h1, h2, h3, h4, h5, h6 {
     cursor: pointer;
 }
 
-/* Large screens: 1440px+ */
-@media (min-width: 1440px) {
-    .hero-logo {
-        left: 10rem;
-    }
-    .hero-text {
-        padding-left: 10rem;
-        padding-top: 260px;
-        max-width: 780px;
-    }
-    .hero-service-item h4 {
-        font-size: 2.75rem;
-    }
-    .hero-service-item p {
-        font-size: 1.05rem;
-    }
-    .hero-services {
-        height: 260px;
-    }
-}
-
-/* Very large screens: 1920px+ (gaming monitors) */
+/* Large screens: 1920px+ (gaming monitors) */
 @media (min-width: 1920px) {
     .hero-logo {
         left: 12rem;
