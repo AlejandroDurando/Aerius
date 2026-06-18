@@ -19,20 +19,20 @@ function nextSlideAuto() {
 function nextSlide() {
     clearInterval(autoplay);
     nextSlideAuto();
-    autoplay = setInterval(nextSlideAuto, 7000);
+    autoplay = setInterval(nextSlideAuto, 8000);
 }
 
 function prevSlide() {
     clearInterval(autoplay);
     goToSlide((current - 1 + slides.length) % slides.length);
-    autoplay = setInterval(nextSlideAuto, 7000);
+    autoplay = setInterval(nextSlideAuto, 8000);
 }
 
 dots.forEach((dot, i) => {
     dot.addEventListener('click', () => {
         clearInterval(autoplay);
         goToSlide(i);
-        autoplay = setInterval(nextSlideAuto, 7000);
+        autoplay = setInterval(nextSlideAuto, 8000);
     });
 });
 
@@ -62,7 +62,7 @@ function showHero() {
     if (heroShown) return;
     heroShown = true;
     heroText.classList.add('show-hero-text');
-    autoplay = setInterval(nextSlideAuto, 7000);
+    autoplay = setInterval(nextSlideAuto, 8000);
 }
 
 if (heroVideo && heroText) {
