@@ -1,1 +1,4 @@
 .DS_Store
+
+# configuración de MCP de cada uno (el de cPanel)
+.mcp.json
